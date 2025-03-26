@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\MedicalHistory;
 class Patients extends Model
 {
     //
@@ -31,4 +31,9 @@ class Patients extends Model
         'mothers_contact_no',
 
     ];
+
+    public function medicalHistory()
+    {
+        return $this->belongsTo(MedicalHistory::class, 'patients_id', 'id');
+    }
 }
