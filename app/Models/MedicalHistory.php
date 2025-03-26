@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
-
 class MedicalHistory extends Model
 {
     //
@@ -35,4 +33,6 @@ class MedicalHistory extends Model
         'remarks',
         'progress_notes'
     ];
+
+   
 }
