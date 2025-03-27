@@ -17,16 +17,5 @@ class EditPatients extends EditRecord
             //Actions\DeleteAction::make(),
         ];
     }
-     
-    // protected function handleRecordUpdate(Model $record, array $data): Model
-    // {
-    //     // dd($data);
-    //     // $record->update($data);
-        
-    //     // $record = MedicalHistory::create($data);
-    //     $medicalHistory = new MedicalHistory();
-    //     // dd($medicalHistory);
-        
-    //     return $record;
-    // }
+  
 }

@@ -36,9 +36,13 @@ class PatientsResource extends Resource
     {
         return $form
             ->schema([
-                Section::make('Post Details')
-                ->schema([
-                    Grid::make(3)
+                Tabs::make('Tabs')
+                ->tabs([
+                    Tab::make('Patient Information')
+                    ->icon('heroicon-m-bell')
+                    ->schema([
+                        // ...
+                        Grid::make(3)
                         ->schema([
                             TextInput::make('first_name')
                             ->required()
@@ -93,7 +97,8 @@ class PatientsResource extends Resource
                             ->label('Weight'),
                         ])
                     ]),
-                    Section::make('Family Background')
+                    Tab::make('Family Background')
+                    ->icon('heroicon-m-bell')
                     ->schema([
                         Grid::make(3)
                         ->schema([
@@ -141,19 +146,10 @@ class PatientsResource extends Resource
                             ->label("Mother's Contact No."),
 
                         ]),
-
-                     ]),
+                    ])
+                ])->columnSpan('full')
             ]);
     }
-
-    public static function getPatientFormSchema(): array
-    {
-        return [    
-               
-                ];
-    }
-
-    
 
     public static function table(Table $table): Table
     {
@@ -195,6 +191,7 @@ class PatientsResource extends Resource
     {
         return [
             //
+            RelationManagers\MedicalEncounterRelationManager::class
         ];
     }
 

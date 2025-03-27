@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\MedicalHistory;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\MedicalEncounters;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 class Patients extends Model
 {
     //
@@ -33,4 +33,8 @@ class Patients extends Model
 
     ];
 
+    public function medicalEncounter(): HasMany
+    {
+        return $this->hasMany(MedicalEncounters::class);
+    }
 }
