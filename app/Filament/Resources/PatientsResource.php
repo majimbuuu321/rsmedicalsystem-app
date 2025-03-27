@@ -23,11 +23,11 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\Tabs;
-use Filament\Forms\Components\Fieldset;
 use Illuminate\Database\Eloquent\Model;
 class PatientsResource extends Resource
 {
     protected static ?string $model = Patients::class;
+    protected static bool $isLazy = false;
 
     protected static ?string $navigationIcon = 'heroicon-m-user-circle';
     protected static ?string $navigationGroup = 'Patient Management';
@@ -39,7 +39,7 @@ class PatientsResource extends Resource
                 Tabs::make('Tabs')
                 ->tabs([
                     Tab::make('Patient Information')
-                    ->icon('heroicon-m-bell')
+                    ->icon('heroicon-m-user-plus')
                     ->schema([
                         // ...
                         Grid::make(3)
@@ -65,6 +65,7 @@ class PatientsResource extends Resource
                         ->schema([
                             TextArea::make('address')
                             ->label('Address')
+                            ->required()
                             ->extraInputAttributes(['onInput' => 'this.value = this.value.toUpperCase()']),
                         ]),
 
@@ -85,6 +86,7 @@ class PatientsResource extends Resource
                             TextInput::make('contact_no')
                             ->prefix('+63')
                             ->tel()
+                            ->required()
                             ->label('Contact No.'),
                         ]),
 
@@ -98,24 +100,28 @@ class PatientsResource extends Resource
                         ])
                     ]),
                     Tab::make('Family Background')
-                    ->icon('heroicon-m-bell')
+                    ->icon('heroicon-m-clipboard-document-check')
                     ->schema([
                         Grid::make(3)
                         ->schema([
                             TextInput::make('fathers_first_name')
-                            ->label("Father's First Name"),
+                            ->label("Father's First Name")
+                            ->extraInputAttributes(['onInput' => 'this.value = this.value.toUpperCase()']),
 
                             TextInput::make('fathers_middle_name')
-                            ->label("Father's Middle Name"),
+                            ->label("Father's Middle Name")
+                            ->extraInputAttributes(['onInput' => 'this.value = this.value.toUpperCase()']),
 
                             TextInput::make('fathers_last_name')
-                            ->label("Father's Last Name"),
+                            ->label("Father's Last Name")
+                            ->extraInputAttributes(['onInput' => 'this.value = this.value.toUpperCase()']),
                         ]),
 
                         Grid::make(2)
                         ->schema([
                             TextInput::make('fathers_fathers_occupation')
-                            ->label("Father's Occupation"),
+                            ->label("Father's Occupation")
+                            ->extraInputAttributes(['onInput' => 'this.value = this.value.toUpperCase()']),
 
                             TextInput::make('fathers_contact_no')
                             ->prefix('+63')
@@ -126,19 +132,23 @@ class PatientsResource extends Resource
                         Grid::make(3)
                         ->schema([
                             TextInput::make('mothers_first_name')
-                            ->label("Mother's First Name"),
+                            ->label("Mother's First Name")
+                            ->extraInputAttributes(['onInput' => 'this.value = this.value.toUpperCase()']),
 
                             TextInput::make('mothers_middle_name')
-                            ->label("Mother's Middle Name"),
+                            ->label("Mother's Middle Name")
+                            ->extraInputAttributes(['onInput' => 'this.value = this.value.toUpperCase()']),
 
                             TextInput::make('mothers_last_name')
-                            ->label("Mother's Last Name"),
+                            ->label("Mother's Last Name")
+                            ->extraInputAttributes(['onInput' => 'this.value = this.value.toUpperCase()']),
                         ]),
 
                         Grid::make(2)
                         ->schema([
                             TextInput::make('mothers_fathers_occupation')
-                            ->label("Mother's Occupation"),
+                            ->label("Mother's Occupation")
+                            ->extraInputAttributes(['onInput' => 'this.value = this.value.toUpperCase()']),
 
                             TextInput::make('mothers_contact_no')
                             ->prefix('+63')
@@ -191,7 +201,9 @@ class PatientsResource extends Resource
     {
         return [
             //
-            RelationManagers\MedicalEncounterRelationManager::class
+            RelationManagers\MedicalHistoryRelationManager::class,
+            RelationManagers\MedicalEncounterRelationManager::class,
+            RelationManagers\VaccineRelationManager::class
         ];
     }
 

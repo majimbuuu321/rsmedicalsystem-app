@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\MedicalEncounters;
+use App\Models\Vaccines;
+use App\Models\MedicalHistory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 class Patients extends Model
 {
@@ -36,5 +38,15 @@ class Patients extends Model
     public function medicalEncounter(): HasMany
     {
         return $this->hasMany(MedicalEncounters::class);
+    }
+
+    public function vaccine(): HasMany
+    {
+        return $this->hasMany(Vaccines::class);
+    }
+
+    public function medicalHistory(): HasMany
+    {
+        return $this->hasMany(MedicalHistory::class);
     }
 }
