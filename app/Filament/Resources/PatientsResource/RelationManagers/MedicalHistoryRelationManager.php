@@ -28,7 +28,8 @@ class MedicalHistoryRelationManager extends RelationManager
                 DatePicker::make('date_history')
                 ->minDate(now()->subYears(150))
                 ->maxDate(now())
-                ->label('Date Medical History'),
+                ->label('Date Medical History')
+                ->required(),
                 
                     Grid::make(2)
                     ->schema([
